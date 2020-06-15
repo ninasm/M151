@@ -20,20 +20,20 @@ namespace TodoApi.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate([FromBody] AuthenticateModel model)
+        public IActionResult Authenticate([FromBody] AuthenticateRequest model)
         {
-            var user = await _userService.Authenticate(model.Username, model.Password);
+            var response = _userService.Authenticate(model);
 
-            if (user == null)
+            if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            return Ok(user);
+            return Ok(response);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
-            var users = await _userService.GetAll();
+            var users = _userService.GetAll();
             return Ok(users);
         }
     }

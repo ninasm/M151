@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TodoApi.Models
 {
-    public class AuthenticateModel
+    public class AuthenticateRequest
     {
         [Required]
         public string Username { get; set; }
